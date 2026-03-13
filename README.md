@@ -1,40 +1,41 @@
-☕ Laboratório de Fundamentos de Java
+☕ Java Fundamentals Lab
 
-Espaço dedicado ao aprendizado da linguagem Java, desde a sintaxe básica até os pilares da Programação Orientada a Objetos (POO). Aqui deposito códigos experimentais e exercícios de lógica.
-🏗️ Estrutura do Repositório
+A space dedicated to learning the Java language, from basic syntax to the pillars of Object-Oriented Programming (OOP). This repository contains experimental code and logic exercises.
+🏗️ Repository Structure
 
-Os arquivos .java estão focados nos seguintes conceitos:
+The .java files focus on the following concepts:
 
-    Sintaxe e Tipos: Manipulação de tipos primitivos, Strings e operadores.
+    Syntax and Types: Handling primitive types, Strings, and operators.
 
-    Estruturas de Controle: Tomada de decisão (if/else, switch) e loops (for, while).
+    Control Structures: Decision making (if/else, switch) and loops (for, while).
 
-    Programação Orientada a Objetos (POO): Classes, objetos, métodos, construtores e o uso de this.
+    Object-Oriented Programming (OOP): Classes, objects, methods, constructors, and the use of this.
 
-    Coleções: Trabalhando com Arrays e ArrayList.
+    Collections: Working with Arrays and ArrayList.
 
-    Tratamento de Exceções: Uso de try/catch para tornar o código robusto.
+    Exception Handling: Using try/catch to build robust code.
 
-💻 Como Rodar os Códigos
+💻 How to Run the Code
 
-Certifique-se de ter o JDK (Java Development Kit) instalado. No terminal, compile e execute o arquivo desejado:
+Make sure you have the JDK (Java Development Kit) installed. In your terminal, compile and run the desired file:
+Bash
 
-# Para compilar (gera o arquivo .class)
-javac NomeDoArquivo.java
+# To compile (generates the .class file)
+javac FileName.java
 
-# Para executar
-java NomeDoArquivo
+# To run
+java FileName
 
-🎯 Metas de Estudo
+🎯 Study Goals
 
-    [x] Variáveis e Estruturas Condicionais
+    [x] Variables and Conditional Structures
 
-    [x] Laços de Repetição
+    [x] Loops and Iterations
 
-    [ ] Pilares da POO (Encapsulamento, Herança, Polimorfismo)
+    [ ] OOP Pillars (Encapsulation, Inheritance, Polymorphism)
 
-    [ ] Interfaces e Classes Abstratas
+    [ ] Interfaces and Abstract Classes
 
-    [ ] Conexão com Banco de Dados (JDBC)
+    [ ] Database Connection (JDBC)
 
-    "Escreva uma vez, corra para qualquer lugar." — A filosofia do Java.
+    "Write once, run anywhere." — The Java philosophy.
