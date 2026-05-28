@@ -13,6 +13,11 @@ por todas as camadas da aplicação (Controller, Service,
 Repository, Entity, DTO). Explique o papel de cada camada
 nesse fluxo.
 
+R: Controller(Ele escuta a requisição HTTP, valida se o formato está correto e delega o processamento para a camada de serviço.), 
+   DTO(Define a estrutura dos dados que entram e saem da API),
+   Service(Contem todas as regras de negocio, faz as validaçoes), 
+   Entity(Representa o banco de dados em formato de codigo), 
+   Repository(E a camada de acesso ao banco de dados).
 --------------------------------------------------------------
 QUESTÃO 2
 --------------------------------------------------------------
@@ -31,6 +36,32 @@ b) Como você refatoraria esse código usando uma classe Mapper
    dedicada?
 c) Quais benefícios essa refatoração traz a longo prazo?
 
+R:A) Poderia ter um Mapper para converter de DTO para outro formato e mistura regras de negocio com mapeamento
+  B) import org.springframework.beans.factory.annotation.Autowired;
+     import org.springframework.stereotype.Service;
+
+    @Service
+    public class LivroService {
+
+       private final LivroRepository repository;
+       private final LivroMapper mapper;
+
+       @Autowired
+       public LivroService(LivroRepository repository, LivroMapper mapper) {
+           this.repository = repository;
+           this.mapper = mapper;
+       }
+
+       public LivroDTO buscarPorId(Long id) {
+             Livro livro = repository.findById(id)
+                   .orElseThrow(() -> new EntityNotFoundException("Livro com ID " + id + " não encontrado."));
+        
+             return mapper.toDTO(livro);
+       }
+    }
+
+  C) Codigo limpo, manutenibilidade, segurança de compilaçao.
+
 --------------------------------------------------------------
 QUESTÃO 3
 --------------------------------------------------------------
@@ -38,35 +69,35 @@ Considere as anotações abaixo do Bean Validation. Para cada
 uma, escreva: o que ela valida, um exemplo de campo em que
 faria sentido usá-la, e o que acontece se a validação falhar.
 
-a) @NotNull
-b) @NotBlank
-c) @Size(min=2, max=100)
-d) @Email
-e) @Min(0)
-f) @Pattern(regexp="...")
+a) @NotNull = Não pode ser nulo
+b) @NotBlank = Para string, garante que tenha um caracter e nao permire strings vazias
+c) @Size(min=2, max=100) = Valida um tamanho minimo e maximo para um campo string
+d) @Email = Verifica se o valor da string tem formato de email
+e) @Min(0) =  Garante que o valor seja maior ou igual aop valor definido, no caso 0 
+f) @Pattern(regexp="...") =  Valida se a string tem uma expressao regular, ideal para cpf, placa de carro etc.
 
 --------------------------------------------------------------
 QUESTÃO 4
 --------------------------------------------------------------
 Marque V ou F e justifique TODAS as falsas:
 
-a) A interface JpaRepository já fornece implementações prontas
+a)V. A interface JpaRepository já fornece implementações prontas
    para operações básicas de CRUD sem que o desenvolvedor
    precise escrever nenhuma linha de SQL.
 
-b) @RestController é equivalente a usar @Controller e
+b)V. @RestController é equivalente a usar @Controller e
    @RequestBody juntos na mesma classe.
 
-c) O Lombok não altera o bytecode da aplicação; ele apenas
+c)F. O Lombok não altera o bytecode da aplicação; ele apenas
    melhora a leitura do código-fonte sem gerar nada novo.
 
-d) A anotação @GeneratedValue define a estratégia pela qual
+d)V. A anotação @GeneratedValue define a estratégia pela qual
    o JPA gera automaticamente o valor da chave primária.
 
-e) Uma classe anotada com @Entity precisa obrigatoriamente
+e)F. Uma classe anotada com @Entity precisa obrigatoriamente
    ter uma anotação @Table para ser reconhecida pelo JPA.
 
-f) A injeção por construtor permite que os campos sejam
+f)V. A injeção por construtor permite que os campos sejam
    declarados como final, tornando o objeto imutável após
    sua criação.
 
@@ -77,6 +108,10 @@ Explique a diferença entre @NotNull e @NotBlank. Em seguida,
 dê um exemplo de situação em que usar @NotNull seria
 insuficiente e @NotBlank seria a escolha correta.
 
+R: @NotNull exige que o valor simplesmente exista (não pode ser null),
+mas aceita strings vazias ou com espaços em branco. @NotBlank é mais restritivo: 
+além de não permitir nulo, exige que a string contenha pelo menos um caractere visível 
+(ignorando espaços em branco nas extremidades).
 --------------------------------------------------------------
 QUESTÃO 6
 --------------------------------------------------------------
